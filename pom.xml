@@ -20,6 +20,7 @@
         <module>micro_user</module>
         <module>micro_web</module>
         <module>micro_doc</module>
+        <module>micro_recruit</module>
     </modules>
 
     <name>micro-cloud</name>
