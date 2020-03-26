@@ -22,6 +22,7 @@
         <module>micro_doc</module>
         <module>micro_recruit</module>
         <module>micro_qa</module>
+        <module>micro_gathering</module>
     </modules>
 
     <name>micro-cloud</name>

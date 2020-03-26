@@ -1,0 +1,17 @@
+server:
+  port: 9005
+spring:
+  application:
+    name: micro-gathering #活动服务
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/micro_gathering?characterEncoding=utf-8
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+redis:
+    host: 127.0.0.1:6379
+
