@@ -1,0 +1,13 @@
+server:
+  port: 9003
+spring:
+  application:
+    name: micro-qa #指定服务名 问答服务
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/micro_qa?characterEncoding=utf-8
+    username: root
+    password: root
+  jpa:
+    database: MySQL
+    show-sql: true

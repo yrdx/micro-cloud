@@ -54,7 +54,7 @@ CREATE TABLE `tb_problem` (
 
 /*Data for the table `tb_problem` */
 
-insert  into `tb_problem`(`id`,`title`,`content`,`createtime`,`updatetime`,`userid`,`nikename`,`visits`,`thumbup`,`reply`,`solve`) values ('1','这是个问题','代码调试不通咋办？','2018-01-08 11:50:50','2018-01-09 11:50:54','2',NULL,101,NULL,NULL,NULL);
+insert  into `tb_problem`(`id`,`title`,`content`,`createtime`,`updatetime`,`userid`,`nickname`,`visits`,`thumbup`,`reply`,`solve`) values ('1','这是个问题','代码调试不通咋办？','2018-01-08 11:50:50','2018-01-09 11:50:54','2',NULL,101,NULL,NULL,NULL);
 
 /*Table structure for table `tb_reply` */
 
@@ -73,9 +73,9 @@ CREATE TABLE `tb_reply` (
 
 /*Data for the table `tb_reply` */
 
-insert  into `tb_reply`(`id`,`problemid`,`content`,`createtime`,`updatetime`,`userid`,`nikename`) values ('','1',NULL,NULL,NULL,NULL,NULL);
-insert  into `tb_reply`(`id`,`problemid`,`content`,`createtime`,`updatetime`,`userid`,`nikename`) values ('2','1','问老师呗','2018-01-10 14:14:06',NULL,'1',NULL);
-insert  into `tb_reply`(`id`,`problemid`,`content`,`createtime`,`updatetime`,`userid`,`nikename`) values ('3','2','明天再调','2018-01-07 14:14:13',NULL,'1',NULL);
+insert  into `tb_reply`(`id`,`problemid`,`content`,`createtime`,`updatetime`,`userid`,`nickname`) values ('','1',NULL,NULL,NULL,NULL,NULL);
+insert  into `tb_reply`(`id`,`problemid`,`content`,`createtime`,`updatetime`,`userid`,`nickname`) values ('2','1','问老师呗','2018-01-10 14:14:06',NULL,'1',NULL);
+insert  into `tb_reply`(`id`,`problemid`,`content`,`createtime`,`updatetime`,`userid`,`nickname`) values ('3','2','明天再调','2018-01-07 14:14:13',NULL,'1',NULL);
 
 /*Table structure for table `tb_ul` */
 
