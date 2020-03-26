@@ -2,12 +2,15 @@ package com.yrdx.base.controller;
 
 import com.yrdx.base.pojo.Label;
 import com.yrdx.base.service.LabelService;
+import com.yrdx.common.result.PageResult;
 import com.yrdx.common.result.Result;
 import com.yrdx.common.result.StatusCode;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +81,22 @@ public class LabelController {
     public Result deleteById(@PathVariable String id){
         labelService.deleteById(id);
         return new Result(true,StatusCode.OK,"删除成功");
+    }
+
+    /**
+     *  根据条件查询
+     * @param searchMap
+     * @return
+     */
+    @RequestMapping(value="/search",method = RequestMethod.POST)
+    public Result<List> findSearch( @RequestBody Map searchMap){
+        return new Result<>(true,StatusCode.OK,"查询成功",labelService.findSearch(searchMap));
+    }
+
+    @RequestMapping(value="/search/{page}/{size}",method = RequestMethod.POST)
+    public Result<List> findSearch( @RequestBody Map searchMap ,@PathVariable int page,@PathVariable int size ){
+        Page pageList= labelService.findSearch(searchMap,page,size);
+        return new Result(true,StatusCode.OK,"查询成功",new PageResult<>(pageList.getTotalElements(),pageList.getContent()));
     }
 
 }
