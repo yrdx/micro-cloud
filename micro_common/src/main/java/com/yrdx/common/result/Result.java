@@ -10,16 +10,16 @@ import lombok.Data;
  * @since 2020-03-26 10:59
  */
 @Data
-public class Result {
+public class Result<T> {
 
     private boolean flag;
     private Integer code;
     private String message;
-    private Object data;
+    private T data;
 
     public Result() {}
 
-    public Result(boolean flag, Integer code, String message, Object data) {
+    public Result(boolean flag, Integer code, String message, T data) {
         this.flag = flag;
         this.code = code;
         this.message = message;
