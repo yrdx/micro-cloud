@@ -12,6 +12,10 @@ spring:
     database: mysql
     show-sql: true
     generate-ddl: true
+  data:
+    mongodb:
+      database: recruitdb
+      host: 127.0.0.1:27017
 redis:
     host: 127.0.0.1:6379
 
