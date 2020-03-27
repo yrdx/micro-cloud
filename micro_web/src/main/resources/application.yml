@@ -1,0 +1,39 @@
+server:
+  port: 9012
+spring:
+  application:
+    name: micro-web
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
+zuul:
+  routes:
+     micro-article: #活动
+       path: /article/**
+       serviceId: micro-article
+     micro-base: #基础
+        path: /base/**
+        serviceId: micro-base
+     micro-friend: #交友
+        path: /friend/**
+        serviceId: micro-friend
+     micro-qa: #问答
+        path: /pa/**
+        serviceId: micro-qa
+     micro-recruit: #招聘
+        path: /recruit/**
+        serviceId: micro-recruit
+     micro-search: #搜索
+        path: /search/**
+        serviceId: micro-search
+     micro-spit: #吐槽
+        path: /spit/**
+        serviceId: micro-spit
+     micro-user: #用户
+        path: /user/**
+        serviceId: micro-user
+
+

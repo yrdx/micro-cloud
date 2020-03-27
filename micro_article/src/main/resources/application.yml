@@ -17,7 +17,7 @@ spring:
       database: recruitdb
       host: 192.168.0.104
 redis:
-    host: 192.168.0.104:6379
+    host: 192.168.0.104
 eureka:
   client:
     service-url:
