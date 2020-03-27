@@ -45,4 +45,13 @@ public class UserController {
         userService.add(user,code);
         return new Result(true,StatusCode.OK,"注册成功");
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Result login(String mobile, String password){
+        User user = userService.findByMobileAndPassword(mobile,password);
+        if(user==null){
+            return new Result(false, StatusCode.LOGINERROR, "登录失败");
+        }
+        return new Result(true, StatusCode.OK, "登录成功");
+    }
 }

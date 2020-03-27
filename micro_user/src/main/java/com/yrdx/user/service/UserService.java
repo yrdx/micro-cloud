@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +38,9 @@ public class UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     /**
      * 发送短信验证码
@@ -70,6 +74,9 @@ public class UserService {
             throw new RuntimeException("验证码输入不正确");
         }
         user.setId(idWorker.nextId()+"" );
+        //密码加密
+        String encodePassword = encoder.encode(user.getPassword());//加密后的密码
+        user.setPassword(encodePassword);
         user.setFollowcount(0);//关注数
         user.setFanscount(0);//粉丝数
         user.setOnline(0L);//在线时长
@@ -77,5 +84,20 @@ public class UserService {
         user.setUpdatedate(new Date());//更新日期
         user.setLastdate(new Date());//最后登陆日期
         userDao.save(user);
+    }
+
+    /**
+     * 根据手机号和密码查询用户
+     * @param mobile
+     * @param password
+     * @return
+     */
+    public User findByMobileAndPassword(String mobile,String password){
+        User user = userDao.findByMobile(mobile);
+        if(user!=null && encoder.matches(password,user.getPassword())){
+            return user;
+        } else {
+            return null;
+        }
     }
 }
