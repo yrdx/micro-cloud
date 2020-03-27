@@ -5,7 +5,13 @@ spring:
     name: micro-spit #吐槽服务
   data:
     mongodb:
-      host: 127.0.0.1
+      host: 192.168.0.104
       database: spit
   redis:
-    host: 127.0.0.1
+    host: 192.168.0.104
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
