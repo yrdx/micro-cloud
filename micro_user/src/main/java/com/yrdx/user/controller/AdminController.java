@@ -2,9 +2,11 @@ package com.yrdx.user.controller;
 
 import com.yrdx.common.result.Result;
 import com.yrdx.common.result.StatusCode;
+import com.yrdx.common.util.JwtUtil;
 import com.yrdx.user.pojo.Admin;
 import com.yrdx.user.service.AdminService;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     /**
      * 增加
      * @param admin
@@ -45,7 +50,12 @@ public class AdminController {
     public Result login(@RequestBody Map<String,String> loginMap){
         Admin admin = adminService.findByLoginnameAndPassword(loginMap.get("loginname"), loginMap.get("password"));
         if(admin!=null){
-            return new Result(true,StatusCode.OK,"登陆成功");
+            //生成令牌
+            String token = jwtUtil.createJWT(admin.getId(), admin.getLoginname(), "admin");
+            Map<String, Object> map = new HashMap<>();
+            map.put("token", token);
+            map.put("role", "admin");
+            return new Result(true,StatusCode.OK,"登陆成功", map);
         } else {
             return new Result(false,StatusCode.LOGINERROR,"用户名或密码错误");
         }

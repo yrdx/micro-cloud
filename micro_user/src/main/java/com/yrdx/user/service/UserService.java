@@ -42,6 +42,7 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+
     /**
      * 发送短信验证码
      * @param mobile
@@ -99,5 +100,13 @@ public class UserService {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 删除 必须有admin角色才能删除
+     * @param id
+     */
+    public void deleteById(String id) {
+        userDao.deleteById(id);
     }
 }

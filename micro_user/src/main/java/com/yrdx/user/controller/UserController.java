@@ -2,8 +2,14 @@ package com.yrdx.user.controller;
 
 import com.yrdx.common.result.Result;
 import com.yrdx.common.result.StatusCode;
+import com.yrdx.common.util.JwtUtil;
 import com.yrdx.user.pojo.User;
 import com.yrdx.user.service.UserService;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +30,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      * 发送短信验证码
@@ -52,6 +64,24 @@ public class UserController {
         if(user==null){
             return new Result(false, StatusCode.LOGINERROR, "登录失败");
         }
-        return new Result(true, StatusCode.OK, "登录成功");
+        String token = jwtUtil.createJWT(user.getId(), user.getMobile(), "user");
+        Map<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        map.put("roles", "user");
+        return new Result(true, StatusCode.OK, "登录成功", map);
+    }
+
+    /**
+     * 删除 必须有admin角色才能删除
+     * @param id
+     */
+    @RequestMapping(value="/{id}",method= RequestMethod.DELETE)
+    public Result delete(@PathVariable String id ){
+        String token = (String) request.getAttribute("claims_admin");
+        if (token==null || "".equals(token)){
+            throw new RuntimeException("权限不足！");
+        }
+        userService.deleteById(id);
+        return new Result(true,StatusCode.OK,"删除成功");
     }
 }

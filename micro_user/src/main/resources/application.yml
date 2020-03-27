@@ -16,3 +16,7 @@ spring:
     host: 192.168.0.104
   rabbitmq:
     host: 192.168.0.104
+jwt:
+   config:
+      key: micro
+      ttl: 360000

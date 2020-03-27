@@ -1,6 +1,7 @@
 package com.yrdx.user;
 
 import com.yrdx.common.util.IdWorker;
+import com.yrdx.common.util.JwtUtil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,5 +29,10 @@ public class UserApplication {
     @Bean
     public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JwtUtil jwtUtil(){
+        return new JwtUtil();
     }
 }
