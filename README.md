@@ -17,6 +17,7 @@
 | `micro-gathering` | 活动 HTTP 服务 | HTTP 9005 |
 | `micro-doc` | 文档说明 |  |
 | `micro-user` | 用户 HTTP 服务 | HTTP 9008 |
+| `micro-sms` | 短信服务 | 9009 |
 
 -------
 ## 技术栈
