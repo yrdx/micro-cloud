@@ -2,7 +2,16 @@ server:
   port: 9008
 spring:
   application:
-    name: micro-user #用户服务
+    name: micro-user
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/micro_user?characterEncoding=utf-8
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
   redis:
     host: 192.168.0.104
   rabbitmq:
