@@ -1,5 +1,6 @@
 package com.yrdx.qa.service;
 
+import com.yrdx.common.util.IdWorker;
 import com.yrdx.qa.dao.ProblemDao;
 import com.yrdx.qa.pojo.Problem;
 
@@ -20,6 +21,9 @@ public class ProblemService {
 
     @Autowired
     private ProblemDao problemDao;
+
+    @Autowired
+    private IdWorker idWorker;
 
     /**
      * 根据标签ID查询问题列表
@@ -55,5 +59,14 @@ public class ProblemService {
     public Page<Problem> findWaitListByLabelId(String lableId,int page, int size) {
         PageRequest pageRequest = PageRequest.of(page-1, size);
         return problemDao.findWaitListByLabelId(lableId,pageRequest);
+    }
+
+    /**
+     * 增加
+     * @param problem
+     */
+    public void add(Problem problem) {
+        problem.setId(idWorker.nextId()+"" );
+        problemDao.save(problem);
     }
 }

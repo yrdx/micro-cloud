@@ -6,9 +6,12 @@ import com.yrdx.common.result.StatusCode;
 import com.yrdx.qa.pojo.Problem;
 import com.yrdx.qa.service.ProblemService;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +28,9 @@ public class ProblemController {
 
     @Autowired
     private ProblemService problemService;
+
+    @Autowired
+    private HttpServletRequest request;
 
     @RequestMapping(value="/newlist/{labelid}/{page}/{size}",method=RequestMethod.GET)
     public Result findNewListByLabelId(@PathVariable String labelid,@PathVariable int page,@PathVariable int size ){
@@ -59,6 +65,20 @@ public class ProblemController {
         Page<Problem> pageList = problemService.findWaitListByLabelId(labelid, page, size);
         PageResult<Problem> pageResult = new PageResult<> (pageList.getTotalElements(), pageList.getContent());
         return new Result(true, StatusCode.OK, "查询成功",pageResult);
+    }
+
+    /**
+     * 增加
+     * @param problem
+     */
+    @RequestMapping(method=RequestMethod.POST)
+    public Result add(@RequestBody Problem problem  ){
+        String token = (String) request.getAttribute("claims_user");
+        if(token==null || "".equals(token)){
+            return new Result(false, StatusCode.ACCESSERROR, "权限不足");
+        }
+        problemService.add(problem);
+        return new Result(true,StatusCode.OK,"增加成功");
     }
 
 }
