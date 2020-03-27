@@ -3,6 +3,7 @@ package com.yrdx.qa.controller;
 import com.yrdx.common.result.PageResult;
 import com.yrdx.common.result.Result;
 import com.yrdx.common.result.StatusCode;
+import com.yrdx.qa.client.LabelClient;
 import com.yrdx.qa.pojo.Problem;
 import com.yrdx.qa.service.ProblemService;
 
@@ -31,6 +32,9 @@ public class ProblemController {
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private LabelClient labelClient;
 
     @RequestMapping(value="/newlist/{labelid}/{page}/{size}",method=RequestMethod.GET)
     public Result findNewListByLabelId(@PathVariable String labelid,@PathVariable int page,@PathVariable int size ){
@@ -79,6 +83,12 @@ public class ProblemController {
         }
         problemService.add(problem);
         return new Result(true,StatusCode.OK,"增加成功");
+    }
+
+    @RequestMapping(value = "/label/{labelid}")
+    public Result findLabelById(@PathVariable String labelid){
+        Result result = labelClient.findById(labelid);
+        return result;
     }
 
 }

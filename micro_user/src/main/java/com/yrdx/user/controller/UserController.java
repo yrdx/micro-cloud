@@ -84,4 +84,13 @@ public class UserController {
         userService.deleteById(id);
         return new Result(true,StatusCode.OK,"删除成功");
     }
+
+    /**
+     * 更新好友粉丝数和用户关注数
+     * @return
+     */
+    @RequestMapping(value = "/{userid}/{friendid}/{x}", method = RequestMethod.PUT)
+    public void updatefanscountandfollowcount(@PathVariable String userid, @PathVariable String friendid, @PathVariable int x){
+        userService.updatefanscountandfollowcount(x, userid, friendid);
+    }
 }

@@ -109,4 +109,10 @@ public class UserService {
     public void deleteById(String id) {
         userDao.deleteById(id);
     }
+
+    @Transactional
+    public void updatefanscountandfollowcount(int x, String userid, String friendid) {
+        userDao.updatefanscount(x, friendid);
+        userDao.updatefollowcount(x, userid);
+    }
 }
