@@ -20,3 +20,6 @@ eureka:
 jwt:
   config:
     key: micro
+feign:
+   hystrix:
+     enabled: true

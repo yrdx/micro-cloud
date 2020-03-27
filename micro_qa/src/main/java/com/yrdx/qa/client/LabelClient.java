@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @version V1.0
  * @since 2020-03-27 14:53
  */
-@FeignClient("micro-base")
+@FeignClient(value = "micro-base", fallback = LabelClientImpl.class)
 public interface LabelClient {
 
     @RequestMapping(value="/label/{id}", method = RequestMethod.GET)
