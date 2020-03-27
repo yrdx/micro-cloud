@@ -16,6 +16,7 @@
 | `micro-common` | 公共工具类 |  |
 | `micro-gathering` | 活动 HTTP 服务 | HTTP 9005 |
 | `micro-doc` | 文档说明 |  |
+| `micro-user` | 用户 HTTP 服务 | HTTP 9008 |
 
 -------
 ## 技术栈
@@ -33,6 +34,7 @@
 | [Elasticsearch](https://www.elastic.co/cn/) | 分布式搜索引擎 | 5.6.8 |
 | [mongodb] | mongodb数据库 | |
 | [logstash] | 日志搜索处理框架 | 5.6.8
+| [rabbitmq] | 消息中间件 | |
 
 
 
