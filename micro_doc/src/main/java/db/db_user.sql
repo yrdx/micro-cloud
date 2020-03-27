@@ -72,7 +72,7 @@ CREATE TABLE `tb_user` (
 
 /*Data for the table `tb_user` */
 
-insert  into `tb_user`(`id`,`loginname`,`password`,`nickname`,`sex`,`birthday`,`image`,`mobile`,`email`,`regdate`,`updatedate`,`lastdate`,`online`,`interest`,`personality`,`fanscount`,`followcount`) values ('1','testuser','111111','小白','男','2018-01-08 15:39:19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0);
+insert  into `tb_user`(`id`,`password`,`nickname`,`sex`,`birthday`,`avatar`,`mobile`,`email`,`regdate`,`updatedate`,`lastdate`,`online`,`interest`,`personality`,`fanscount`,`followcount`) values ('1','111111','小白','男','2018-01-08 15:39:19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

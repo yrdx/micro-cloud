@@ -1,0 +1,9 @@
+server:
+  port: 9008
+spring:
+  application:
+    name: micro-user #用户服务
+  redis:
+    host: 192.168.0.104
+  rabbitmq:
+    host: 192.168.0.104
